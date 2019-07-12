@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class RegisterServiceImpl implements RegisterService {
 
-    private static final String USER_NOT_FOUND = "This user not found";
 
     private final UserMapper userMapper;
     private final UserDAO userDAO;
@@ -41,10 +40,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public UserDTO findUserById(Integer userId) {
-        Optional<User> user = userDAO.findById(userId);
-        if (!user.isPresent()) {
-            throw new NotFoundException(USER_NOT_FOUND);
-        }
-        return userMapper.UserToUserDTO(user.get());
+        return userDAO.findById(userId).map(userMapper::UserToUserDTO)
+                .orElseThrow(() -> new NotFoundException(userId.toString()));
     }
 }
