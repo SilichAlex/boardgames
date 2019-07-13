@@ -1,8 +1,12 @@
 package com.boardgames.userservice.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class UserDTO {
     private Integer id;
     private String username;

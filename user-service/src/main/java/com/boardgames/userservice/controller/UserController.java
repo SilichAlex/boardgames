@@ -5,12 +5,12 @@ import com.boardgames.userservice.service.RegisterService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("register")
-public class RegisterController {
+@RequestMapping("user")
+public class UserController {
 
     private final RegisterService registerService;
 
-    public RegisterController(RegisterService registerService) {
+    public UserController(RegisterService registerService) {
         this.registerService = registerService;
     }
 
@@ -29,7 +29,7 @@ public class RegisterController {
         return registerService.updateUser(userDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Integer userId){
         registerService.deleteUserById(userId);
     }

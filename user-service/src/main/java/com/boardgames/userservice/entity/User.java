@@ -1,13 +1,19 @@
 package com.boardgames.userservice.entity;
 
-import lombok.Data;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import lombok.*;
 
 import javax.persistence.*;
 
 
-@Data
-@Table(name = "user")
+@Getter
+@Setter
 @Entity
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "user")
 public class User {
 
     @Column(name = "id")
@@ -20,5 +26,8 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @Column(columnDefinition="tinyint(1) default 1")
+    private Boolean active;
 
 }

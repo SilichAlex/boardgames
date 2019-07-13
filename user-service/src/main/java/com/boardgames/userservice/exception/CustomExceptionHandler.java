@@ -15,7 +15,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handleNotFoundException(Exception e, WebRequest req) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(e.getMessage(), req.getDescription(false));
-        log.error("User with id {} not found", e.getMessage());
+        log.error(e.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
